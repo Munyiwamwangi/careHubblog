@@ -38,11 +38,11 @@ def register():
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-		user = Useer(username=form.username.data, email=form.email.data, password=hashed_password)
+		user = User(username=form.username.data, email=form.email.data, password=hashed_password)
 		db.session.add(user)
 		db.session.commit()
 		flash(f'Account created for {form.username.data}. You can now login', 'success')
-		return redirect(url_for('home'))
+		return redirect(url_for('login'))
 	return render_template('register.html', title = 'Register', form = form)
 
 @app.route("/login", methods=['GET','POST'])
