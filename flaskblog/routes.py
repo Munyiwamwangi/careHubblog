@@ -1,16 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
+from flask import render_template, url_for, flash, redirect
+from flaskblog import app
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
 
-app = Flask (__name__)
-
-
-app.config['SECRET_KEY'] = 'de74e7b0fad76d362bfd1fcd0c0fd885'
-#init db
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-#db instance
-db = SQLAlchemy(app)
-from models import User, Post
 
 posts = [
 {
@@ -56,8 +48,3 @@ def login():
 		flash(f'Login succesfull. Welcome!.', 'success')
 		return redirect(url_for('home'))
 	return render_template('login.html', title = 'Login', form = form)
-
-
-if __name__ == '__main__':
-	app.run(debug=True)
-	

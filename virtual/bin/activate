@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/moringaschool/Documents/moringa-school-projects/watchlist2/virtual"
+VIRTUAL_ENV="/home/moringaschool/Documents/moringa-school-projects/pitchPerfect/virtual"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
