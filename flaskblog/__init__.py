@@ -10,5 +10,5 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 #db instance
 
 db = SQLAlchemy(app)
-
+bcrypt = Bcrypt(app)
 from flaskblog import routes
