@@ -63,8 +63,13 @@ def login():
 	return render_template('login.html', title = 'Login', form = form)
 
 
-
+#LOGOUT
 @app.route("/logout")
 def logout():
 	logout_user()
 	return redirect(url_for('home'))
+
+#ACCOUNT
+@app.route("/account")
+def account():
+	return render_template('account.html', title = 'Account')
