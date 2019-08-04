@@ -18,4 +18,6 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 #login_message_category is a bootstrap class
 login_manager.login_message_category = 'info'
+
+
 from flaskblog import routes
