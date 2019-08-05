@@ -14,16 +14,16 @@
 		<title>Flask Blog </title>
 	{% endif %}
 </head>
-<body>
-	<header class="jumbotron" style="font-family: Courgette, cursive; color: rgb(5, 61, 61);">
+<body >
+	<header class="row jumbotron" style="font-family: Courgette, cursive; color: rgb(5, 61, 61);">
 		<h2 class="nav-brand mr-4 ml-4 text-center">Welcome to Pitch Perfect <br>necessity is the mother of invention </h2>
 		<nav class=" navbar navbar-expand-md navbar-dark fixed-top">
-			<div class=" container " style="color: black;">
+			<div style="color: black;">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="" >
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarToggle">
-					<div class="navbar-nav mr-auto">
+				<div class="collapse navbar-collapse">
+					<div class="">
 						<a class="mr-4 ml-4" href="{{ url_for('home') }}">Home</a>
 						<a class="mr-4 ml-4" href="{{ url_for('about') }}">About</a>
 					</div>
@@ -40,7 +40,7 @@
 			</div>
 		</nav>
 	</header>
-<main role="main" class="container">
+<main role="main">
 	<div class="row">
 		<div class="col-sm-2">
 			<div class="content-section" style="font-size: 14px; font-style: italic;">
