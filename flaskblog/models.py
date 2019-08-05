@@ -19,23 +19,25 @@ class User(db.Model, UserMixin):
 	posts = db.relationship('Post', backref = 'author', lazy = True)
 
  #email config .. passing a token that expires in 1800 seconds; to reset password
-def get_reset_token(self, expires_sec=1800):
-	s=Serializer(app.config['SECRET_KEY'], expires_sec)
-	return s.dumps({'user_id':self.id}).decode('utf-8')
+	def get_reset_token(self, expires_sec=1800):
+		s=Serializer(app.config['SECRET_KEY'], expires_sec)
+		return s.dumps({'user_id':self.id}).decode('utf-8')
 
-@staticmethod
-def verify_reset_token(token):#TAKES TOKEN AS ARGUMENT
-	s = Serializer(app.config['SECRET_KEY'])
-	try:
-		user_id = s.loads(token)['user_id']
-	except:
-		return None #RETURNS NONE IF WE GET AN EXCEPTION
-	return User.query.get(user_id) #IF WE DONT, RETURNS USERS IS
-	'''
-	STATIC METHOD, RETURN IS NOT USED, WE TELL PYTHON NOT TO EXPECT THAT SELF PARAMETER AS AN ARGUMENT
-	BUT THIS RETURNED USER IS NOT USED IN ANY WAY, H
-	ENCE WE GO UP THERE AND OVERRULE IT WITH STATIC DECORATOR AND METHOD
-'''
+	@staticmethod
+	def verify_reset_token(token):#TAKES TOKEN AS ARGUMENT
+		s = Serializer(app.config['SECRET_KEY'])
+		try:
+			user_id = s.loads(token)['user_id']
+		except:
+			return None #RETURNS NONE IF WE GET AN EXCEPTION
+		return User.query.get(user_id) #IF WE DONT, RETURNS USERS IS
+
+		'''
+		STATIC METHOD, RETURN IS NOT USED, WE TELL PYTHON NOT TO EXPECT THAT SELF PARAMETER AS AN ARGUMENT
+		BUT THIS RETURNED USER IS NOT USED IN ANY WAY, H
+		ENCE WE GO UP THERE AND OVERRULE IT WITH STATIC DECORATOR AND METHOD
+
+		'''
 
 
 
@@ -52,3 +54,14 @@ class Post(db.Model):
 
 	def __repr__(self):
 		return f"Post('{self.title}', '{self.date_posted}')"
+
+#COMMENTS OBJECT
+class Comments(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	name = db.Column(db.String(150), nullable = False)
+	date_comment = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+	content = db.Column(db.String(150), nullable = False )
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+
+	def __repr__(self):
+		return f"Comment('{self.name}', '{self.date_comment}')"

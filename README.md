@@ -1,29 +1,29 @@
-# News Pitch Perfect
+# Pitch Perfect
 
 Author : Munyi Mwangi Wanjiku
 
 ## Live app launch
 
-Live app: launch APP<a href = 'https://joefeeds.herokuapp.com/'>. Click.
+Live app: launch APP<a href = ''>. Click.
 
 ## Description
 
-DAILY STORY/ is a platform that allows users to share their ideas as posts and others can read them, contribute through commenting and voting.
+Pitch Perfect is a platform that allows users to share their ideas as posts and others can read them, contribute through commenting and voting.
 
 ## Set up and Installations
 
 Clone the repository to your local machine from the link below
 
-Click to Clone <link '<https://github.com/Munyiwamwangi/NewsFeed.git'>Clone.>
+Click to Clone <link href="https://github.com/Munyiwamwangi/pitchPerfect.git" >Clone.>
 
-Install and open virtual environment and run the app using the commands
-
-  $ chmod +x start.sh
-  $ ./start.sh
+Install and open virtual environment and run the app in a virtual environment using the commands
+  $ source virtual/bin/activate (activates virtual evironment)
+  $ chmod +x start.sh  (readys the app modules and compiles the app)
+  $ ./start.sh  (runs the app and provides a local server)
 
 Click to learn more about  <a href = 'https://newsapi.org/'>
 
-## Happy Coding
+## Happy Coding ..Yeeeeeeeee!!!
 
                __
               |  |   / /
@@ -38,16 +38,18 @@ Click to learn more about  <a href = 'https://newsapi.org/'>
 
 |Behaviour   |  Input | Output|
 |:--------|:---------|:--------------|
-|Display news sources| On page load|List of various news sources is displayed per category|
-|Display articles from a news source|Click a news source|Redirected to a page with a list of articles from the source|
-|Display the preview of an article|On page load|Each article displays an image, title, description and publication date|
-|Check news categorically |On page load|Redirects to a specific catgory of news|
+| Register Link| Provides a regisstry platform | Allows user to register hence creating an account and provies entry into the app through a Login page |
+|Login Link |Allows registered users to login hence access other user priviledges|Allows registered users to login hence access other user priviledges such as create and edit their pitches|
+|CLicking user | Gives a list of the specific user's Pitches |Gives a list of the specific user's Pitches with dates they were posted|
+|Clicking the title of a pitch (user)| Opens the specific pitch and allows update and delete |Opens the specific pitch and allows update and delete|
+|Clicking the title of a pitch (non-user)| Only allows read, comment and vote |Only allows read, comment and vote|
+
 
 ## Built With
 
 * Flask - routing, templating, server
 * python3.6 - routing, templating, server
-* Markdown -README
+* Markdown -README.md
 
 ## Contributing
 
@@ -56,7 +58,6 @@ If you want to put out a pull request you first have to send us the sample code 
 ## Authors Other Works
 
 <a href = 'https://munyiwamwangi.github.io/Quotes-App/'> - Quotes App: An app that allows users to create, delete and vote for their favourite quotes.
-
 
 ## Contacts
 

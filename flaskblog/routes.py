@@ -31,6 +31,19 @@ def register():
 		user = User(username=form.username.data, email=form.email.data, password=hashed_password)
 		db.session.add(user)
 		db.session.commit()
+
+		def send_reset_email(user):
+			token = user.get_reset_token()
+			user_welcome = Message('User Welcome',
+			sender = 'noreply@demo.com', recipients = [user.email] )
+			user_welcome.body = '''Login;
+			{url_for('login.html') }
+
+			If yoy did not make this request, ignore this email and no changes will be made;
+
+			'''
+			mail.send(user_welcome)
+
 		flash(f'Account created for {form.username.data}. You can now login', 'success')
 		return redirect(url_for('login'))
 	return render_template('register.html', title = 'Register', form = form)
@@ -162,7 +175,8 @@ def user_posts(username):
 def send_reset_email(user):
 	token = user.get_reset_token()
 	msg = Message('Password Reset Request',
-		sender = 'noreply@demo.com', recipients = [user.email] )
+		sender = 'noreply@demo.com', 
+		recipients = [user.email] )
 	msg.body = '''To reset you password, visit;
 	{url_for('reset_token', token = token, _external = True) }
 
