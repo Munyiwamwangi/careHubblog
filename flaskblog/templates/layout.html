@@ -14,14 +14,18 @@
 		<title>Flask Blog </title>
 	{% endif %}
 </head>
-<body >
-	<header class="row jumbotron" style="font-family: Courgette, cursive; color: rgb(5, 61, 61);">
-		<h2 class="nav-brand mr-4 ml-4 text-center">Welcome to Pitch Perfect <br>necessity is the mother of invention </h2>
-		<nav class=" navbar navbar-expand-md navbar-dark fixed-top">
+<body class="container-fluid">
+	<div style="padding-left: 20%; color: rgb(8, 117, 108;" class="">
+		<h2 class="mr-20 text-center">Welcome to Pitch Perfect <br><span style="font-size: 12px; font-style: italic;">necessity is the mother of invention
+		</span> </h2>
+	</div>
+	<header class="row">
+		<nav class=" navbar navbar-expand-md navbar-dark">
 			<div style="color: black;">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="" >
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				
 				<div class="collapse navbar-collapse">
 					<div class="">
 						<a class="mr-4 ml-4" href="{{ url_for('home') }}">Home</a>
@@ -29,14 +33,14 @@
 					</div>
 					<div style="box-sizing: border-box; display: inline-flex;">
 						{% if current_user.is_authenticated %}
-						<a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Pitch</a>
+						<a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
 						<a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
 						<a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
 						{% else %}
-						<div style="float: left;">
+						<div style="display: inline-flex; float: right;" class="ml-10">
 							<a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-							<a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>	
-						</div>					
+							<a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+						</div>
 						{% endif %}
 					</div>
 				</div>
