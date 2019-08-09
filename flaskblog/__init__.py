@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 #we want to tie users to login so that they can only access user account infof if they are logged in
-login_manager.login_view = 'login'
+login_manager.login_view = 'users.login'
 #login_message_category is a bootstrap class
 login_manager.login_message_category = 'info'
 #setting up mail 

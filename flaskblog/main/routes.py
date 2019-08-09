@@ -2,7 +2,7 @@ from flask import render_template, request, Blueprint
 from flaskblog.models import Post
 
 #initlialize blueprint
-main = Blueprint('main',__name__)main
+main = Blueprint('main',__name__)
 
 
 @main.route("/")
