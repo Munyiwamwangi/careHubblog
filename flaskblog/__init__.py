@@ -24,11 +24,19 @@ login_manager.login_message_category = 'info'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] =  587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] =  os.environ.get('EMAIL_USERNAME')
-app.config['MAIL_PASSWORD'] =  os.environ.get('EMAIL_PASSWORD')
+app.config['MAIL_USERNAME'] =  os.environ.get('EMAIL_USER')
+app.config['MAIL_PASSWORD'] =  os.environ.get('EMAIL_PASS')
 
 
-#initializing the extension
+#initializing the mailing extension 
 mail = Mail(app)
 
-from flaskblog import routes
+#IMPORTING ROUTES SO AS TO REGISTER THE INITIALIZED BLUEPRINTS
+from flaskblog.main.routes import main
+from flaskblog.posts.routes import posts
+from flaskblog.users.routes import users
+
+#REGISTERING THE  BLUEPRINTS NOW
+app.register_blueprint(main)
+app.register_blueprint(posts)
+app.register_blueprint(users)

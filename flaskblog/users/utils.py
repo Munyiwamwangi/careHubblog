@@ -5,7 +5,6 @@ from flask import url_for
 from flask_mail import Message
 from flaskblog import app, mail
 
-
 def save_picture(form_picture):
 	random_hex = secrets.token_hex(8)
 	_, f_ext = os.path.splitext(form_picture.filename) #throwing the variable name. tutorial 7, min30
@@ -27,7 +26,7 @@ def send_reset_email(user):
 		sender = 'noreply@demo.com', 
 		recipients = [user.email] )
 	msg.body = '''To reset you password, visit;
-	{url_for('reset_token', token = token, _external = True) }
+	{url_for('users.reset_token', token = token, _external = True) }
 
 	If yoy did not make this request, ignore this email and no changes will be made
 
