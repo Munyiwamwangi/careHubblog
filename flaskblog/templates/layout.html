@@ -21,7 +21,7 @@
 	</div>
 
 	<header class="row">
-		<nav style="padding-left: 50%;" class=" navbar navbar-expand-md">
+		<nav style="" class="container navbar navbar-expand-md">
 			<div style="color: black;">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="" >
 					<span class="navbar-toggler-icon"></span>
@@ -42,18 +42,6 @@
 							<a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
 						</div>
 
-						<!-- <div style="">
-							<div style="" >
-								<a href="{{ url_for('users.account') }}">Account</a>
-							</div>
-							<img class="rounded-circle article-img" src="{{ url_for('static',filename = 'profile_pics/' + post.author.image_file) }} ">
-							<div class="media-body">
-								<div class="article-metadata">
-									<a class="mr-2" href="{{url_for('users.user_posts', username = post.author.username) }}">{{ post.author.username}}</a>
-									<small class="text-muted">Its {{post.date_posted.strftime('%Y-%m-%d')}} </small>
-								</div>
-							</div>
-						</div> -->
 
 						{% endif %}
 					</div>

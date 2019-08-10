@@ -18,10 +18,6 @@ login_manager.login_message_category = 'info'
 #initializing the mailing extension 
 mail = Mail()
 
-#IMPORTING ROUTES SO AS TO REGISTER THE INITIALIZED BLUEPRINTS
-from flaskblog.main.routes import main
-from flaskblog.posts.routes import posts
-from flaskblog.users.routes import users
 
 '''
 WE MOVE CREATION OF THE APP INTANCE INTO A FUNCTION
@@ -45,9 +41,19 @@ def create_app(config_class=Config):
 	login_manager.init_app(app)
 	mail.init_app(app)
 
+
+
+	#IMPORTING ROUTES SO AS TO REGISTER THE INITIALIZED BLUEPRINTS
+	from flaskblog.main.routes import main
+	from flaskblog.posts.routes import posts
+	from flaskblog.users.routes import users
+	from flaskblog.errors.handlers import errors
+
 	#REGISTERING THE  BLUEPRINTS NOW
 	app.register_blueprint(main)
 	app.register_blueprint(posts)
 	app.register_blueprint(users)
+	app.register_blueprint(errors)
+
 
 	return app
