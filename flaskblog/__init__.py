@@ -1,42 +1,53 @@
-import os #TO USE ENVIRONMENT VARIABLES
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
+from flaskblog.config import Config
 
 
-app = Flask(__name__)
-
-
-app.config['SECRET_KEY'] = 'de74e7b0fad76d362bfd1fcd0c0fd885'
-#init db
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 #db instance
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
 #we want to tie users to login so that they can only access user account infof if they are logged in
 login_manager.login_view = 'users.login'
 #login_message_category is a bootstrap class
 login_manager.login_message_category = 'info'
 #setting up mail 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] =  587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] =  os.environ.get('EMAIL_USER')
-app.config['MAIL_PASSWORD'] =  os.environ.get('EMAIL_PASS')
-
-
 #initializing the mailing extension 
-mail = Mail(app)
+mail = Mail()
 
 #IMPORTING ROUTES SO AS TO REGISTER THE INITIALIZED BLUEPRINTS
 from flaskblog.main.routes import main
 from flaskblog.posts.routes import posts
 from flaskblog.users.routes import users
 
-#REGISTERING THE  BLUEPRINTS NOW
-app.register_blueprint(main)
-app.register_blueprint(posts)
-app.register_blueprint(users)
+'''
+WE MOVE CREATION OF THE APP INTANCE INTO A FUNCTION
+SO AS TO CREATE DIFFERENT INSTANCES OF OUR APP
+WE ARE MOVING EVERYTHING INTO THIS FUNCTION
+WE MOVE BLUEPRINTS INTO THE FUNCTION
+'''
+def create_app(config_class=Config):
+	
+	#APP CREATION COMES FIRST
+	app = Flask(__name__)
+	app.config.from_object(Config)
+
+	'''
+	THEN RUN THE APP INTO EVERY OF THESE, 
+	PASS IN THE APP, AND
+	AND RETURN THE APP IN THE LAST LINE BELOW
+	'''
+	db.init_app(app)
+	bcrypt.init_app(app)
+	login_manager.init_app(app)
+	mail.init_app(app)
+
+	#REGISTERING THE  BLUEPRINTS NOW
+	app.register_blueprint(main)
+	app.register_blueprint(posts)
+	app.register_blueprint(users)
+
+	return app

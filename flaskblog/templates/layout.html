@@ -15,17 +15,17 @@
 	{% endif %}
 </head>
 <body class="container-fluid">
-	<div style="padding-left: 20%; color: rgb(8, 117, 108;" class="">
-		<h2 class="mr-20 text-center">Welcome to Pitch Perfect <br><span style="font-size: 12px; font-style: italic;">necessity is the mother of invention
+	<div style="padding-left: 8%; color: rgb(8, 117, 108;" class="">
+		<h2 class="text-center">Welcome to Pitch Perfect <br><span style="font-size: 12px; font-style: italic;">necessity is the mother of invention
 		</span> </h2>
 	</div>
+
 	<header class="row">
-		<nav class=" navbar navbar-expand-md navbar-dark">
+		<nav style="padding-left: 50%;" class=" navbar navbar-expand-md">
 			<div style="color: black;">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="" >
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				
 				<div class="collapse navbar-collapse">
 					<div class="">
 						<a class="mr-4 ml-4" href="{{ url_for('main.home') }}">Home</a>
@@ -41,6 +41,20 @@
 							<a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
 							<a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
 						</div>
+
+						<!-- <div style="">
+							<div style="" >
+								<a href="{{ url_for('users.account') }}">Account</a>
+							</div>
+							<img class="rounded-circle article-img" src="{{ url_for('static',filename = 'profile_pics/' + post.author.image_file) }} ">
+							<div class="media-body">
+								<div class="article-metadata">
+									<a class="mr-2" href="{{url_for('users.user_posts', username = post.author.username) }}">{{ post.author.username}}</a>
+									<small class="text-muted">Its {{post.date_posted.strftime('%Y-%m-%d')}} </small>
+								</div>
+							</div>
+						</div> -->
+
 						{% endif %}
 					</div>
 				</div>

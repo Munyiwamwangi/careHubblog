@@ -1,15 +1,15 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for
+from flask import url_for, current_app
 from flask_mail import Message
-from flaskblog import app, mail
+from flaskblog import mail
 
 def save_picture(form_picture):
 	random_hex = secrets.token_hex(8)
 	_, f_ext = os.path.splitext(form_picture.filename) #throwing the variable name. tutorial 7, min30
 	picture_fn = random_hex + f_ext
-	picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+	picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn)
 
 #Installed Pillow for image resizing
 	output_size =(125, 125)
