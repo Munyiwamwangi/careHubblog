@@ -47,6 +47,7 @@ def create_app(config_class=Config):
 	from flaskblog.main.routes import main
 	from flaskblog.posts.routes import posts
 	from flaskblog.users.routes import users
+	from flaskblog.reviews.routes import reviews
 	from flaskblog.errors.handlers import errors
 
 	#REGISTERING THE  BLUEPRINTS NOW
@@ -54,6 +55,7 @@ def create_app(config_class=Config):
 	app.register_blueprint(posts)
 	app.register_blueprint(users)
 	app.register_blueprint(errors)
+	app.register_blueprint(reviews)
 
 
 	return app

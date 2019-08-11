@@ -18,8 +18,9 @@ class User(db.Model, UserMixin):
 	image_file = db.Column(db.String(20),  nullable = False, default = 'default.jpg')
 	password = db.Column(db.String(60), nullable = False)
 	posts = db.relationship('Post', backref = 'author', lazy = True)
+	reviews = db.relationship('Review', backref = 'author', lazy = True)
 
- #email config .. passing a token that expires in 1800 seconds; to reset password
+#email config .. passing a token that expires in 1800 seconds; to reset password
 	def get_reset_token(self, expires_sec=1800):
 		s=Serializer(current_app.config['SECRET_KEY'], expires_sec)
 		return s.dumps({'user_id':self.id}).decode('utf-8')
@@ -55,7 +56,7 @@ class Post(db.Model):
 		return f"Post('{self.title}', '{self.date_posted}')"
 
 #COMMENTS OBJECT
-class Comments(db.Model):
+class Review(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(150), nullable = False)
 	date_comment = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
