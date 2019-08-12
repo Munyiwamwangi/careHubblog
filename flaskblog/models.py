@@ -59,7 +59,7 @@ class Post(db.Model):
 class Review(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(150), nullable = False)
-	date_comment = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+	date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 	content = db.Column(db.String(150), nullable = False )
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
