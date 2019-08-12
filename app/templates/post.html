@@ -15,8 +15,11 @@
 		{% endif %}
 		<h3 class="article-title text-center">{{post.title}} </a></h3>
 		<p class="article-content">{{post.content}} </p>
-	</div>
+		<p>
+			<a class="btn, btn-sm btn-info btn-sm m-1" href="{{url_for('reviews.new_review', post_id = post.id)}} " >Comment on this post</a>
+	</p>
 </article>
+
 
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -30,7 +33,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<form action="{{ url_for('posts.delete_post', post_id = post.id) }} " method="POST">
+				<form action="{{ url_for('posts.delete_post' , post_id = post.id) }} " method="POST">
 					<input class="btn btn-danger" type="submit" value="Delete">
 				</form>
 			</div>

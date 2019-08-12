@@ -5,9 +5,20 @@ from app.models import User, Post, Review
 from app.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                    RequestResetForm, ResetPasswordForm)
 from app.users.utils import save_picture, send_reset_email
+from flask import session
 
 #instatntiating the blueprint
 users = Blueprint('users',__name__)
+
+# @users.route('/my_url1')
+# def my_view1():
+#     data = None
+#     if session.new:
+#          user = User()
+#          session['anonymous_user_id'] = user.id
+#     else:
+#          user = User.query.get(session['anonymous_user_id'])
+
 
 @users.route("/register", methods=['GET','POST'])
 def register():
@@ -33,7 +44,7 @@ def register():
 			mail.send(user_welcome)
 
 		flash(f'Account created for {form.username.data}. You can now login', 'success')
-		return redirect(url_for('main.login'))
+		return redirect(url_for('users.login'))
 	return render_template('register.html', title = 'Register', form = form)
 
 @users.route("/login", methods=['GET','POST'])
@@ -73,10 +84,11 @@ def account():
 		current_user.email = form.email.data
 		db.session.commit()
 		flash('Your account has been updated', 'success')
-		return redirect (url_for('main.account'))
+		return redirect (url_for('users.account'))
 	elif request.method == 'GET':
 		form.username.data = current_user.username
 		form.email.data = current_user.email
+		# form.bio.data = current_user.data
 	image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
 	return render_template('account.html', title = 'Account', 
 		image_file = image_file, form=form)
@@ -88,13 +100,25 @@ def user_posts(username):
 	#PAGINATION
 	page = request.args.get('page', 1, type = int)
 	user = User.query.filter_by(username = username).first_or_404()
-	reviews = Review.query.filter_by(author = user)\
-		.order_by(Post.date_posted.desc())\
-		.paginate(page = page, per_page = 5)
 	posts = Post.query.filter_by(author = user)\
 		.order_by(Post.date_posted.desc())\
 		.paginate(page = page, per_page = 5)
-	return render_template('user_posts.html', posts=posts, user = user, )
+#add REVIEWS TO POSTS PAGE
+	reviews = Review.query.filter_by(author = user)\
+		.order_by(Review.date_posted.desc())
+	return render_template('user_posts.html', posts=posts, user = user, reviews = reviews)
+
+
+#USER REVIEWS
+@users.route("/user/<string:post_id>")
+def user_reviews(post_id):
+	user = User.query.filter_by(username = username).first_or_404()
+#ADD REVIEWS TO POSTS PAGE
+	reviews = Review.query.filter_by(author = user)\
+		.order_by(Review.date_posted.desc())
+	return render_template('user_reviews.html',user = user, reviews = reviews)
+
+
 
 
 @users.route("/reset_password", methods=['GET','POST'])

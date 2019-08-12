@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2 class="mb-3"> Review by {{ user.username }} ({{ reviews.total }} ) </h2>
+<h2 class="mb-3">({{ reviews.total }} ) </h2>
 {% for review in reviews.items %}
 <article class="media content-section">
 	<img class="rounded-circle article-img" src="{{ url_for('static',filename = 'profile_pics/' + review.author.image_file) }} ">
