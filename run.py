@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flaskblog import create_app
+from app import create_app
 
 '''
 RECREATING THE APP VARIABLE 

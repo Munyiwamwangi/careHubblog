@@ -1,7 +1,7 @@
 import unittest
-from flaskblog import Comment
+from app import Comment
 from flask import current_app
-from flaskblog import create_app
+from app import create_app
 
 #this is a basic test manager
 class BasicsTestCase(unittest.TestCase):

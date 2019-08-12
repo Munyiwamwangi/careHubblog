@@ -1,5 +1,5 @@
 import unittest
-from flaskblog import Post
+from app import Post
 
 
 class UserTest(unittest.TestCase):
