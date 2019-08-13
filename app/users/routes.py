@@ -104,7 +104,7 @@ def user_posts(username):
 		.order_by(Post.date_posted.desc())\
 		.paginate(page = page, per_page = 5)
 #add REVIEWS TO POSTS PAGE
-	reviews = Review.query.filter_by(author = user)\
+	reviews = Review.query.filter_by(commentor = user)\
 		.order_by(Review.date_posted.desc())
 	return render_template('user_posts.html', posts=posts, user = user, reviews = reviews)
 

@@ -16,7 +16,7 @@
 		<h3 class="article-title text-center">{{post.title}} </a></h3>
 		<p class="article-content">{{post.content}} </p>
 		<p>
-			<a class="btn, btn-sm btn-info btn-sm m-1" href="{{url_for('reviews.new_review', post_id = post.id)}} " >Comment on this post</a>
+			<a class="btn, btn-sm btn-info btn-sm m-1" href="{{url_for('reviews.new_review', id = post.id)}} " >Comment on this post</a>
 	</p>
 </article>
 

@@ -10,17 +10,20 @@ from app.reviews.forms import ReviewForm
 reviews = Blueprint('reviews',__name__)
 
 #POSTS
-@reviews.route("/review/new", methods=['GET','POST'])
-def new_review():
+@reviews.route("/review/new/<int:id>", methods=['GET','POST'])
+def new_review(id):
 	form = ReviewForm()
 	if form.validate_on_submit():
-		reviews = Review(name = form.name.data, content = form.content.data, commentor = current_user)
+		post_id = id
+		user = User.query.filter_by(username = username).first_or_404()
+		posts = Post.query.filter_by(author = user)\
+		.order_by(Post.date_posted.desc())
+		reviews = Review(name = form.name.data, content = form.content.data, commentor = current_user, post_id=post_id)
 		db.session.add(reviews)
 		db.session.commit()
 		flash('you have commented succesfully', 'success')
-		return redirect(url_for('posts.user_posts'))
-	return render_template('create_review.html', title = 'New Review', form = form, legend = 'New Review')
-
+		return redirect(url_for('users.user_posts', username=username))
+	return render_template('create_review.html', title = 'New Review', form = form, id=id,legend = 'New Review')
 
 @reviews.route("/review/<int:review_id>")
 def review(post_id):

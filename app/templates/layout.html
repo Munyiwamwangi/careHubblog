@@ -21,7 +21,7 @@
 	</div>
 
 	<header class="row">
-		<nav style="" class="container navbar navbar-expand-md">
+		<nav style="margin-left: 20%" class="container navbar navbar-expand-md">
 			<div style="color: black;">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="" >
 					<span class="navbar-toggler-icon"></span>
@@ -51,20 +51,17 @@
 	</header>
 <main role="main">
 	<div class="row">
-		<div class="col-sm-2">
+		<div class="col-sm-4">
 			<div class="content-section" style="font-size: 14px; font-style: italic;">
-				<h3>Higest Rated Pitches</h3>
+				<a href="{{url_for('main.home')}} ">
+					<h3>Quote ~YouR~ DaY</h3>
+				</a>
 				<p class="text-muted">
-					<ul style="">
-						<li>Latest Posts</li>
-						<li>Announcements</li>
-						<li>Calendar</li>
-						<li>Events</li>
-					</ul>
+				
 				</p>
 			</div>
 		</div>
-		<div class="col-sm-8" style="font-size: 14px; font-style: italic;">
+		<div class="col-sm-6" style="font-size: 14px; font-style: italic;">
 			{% with messages = get_flashed_messages(with_categories=true) %} 
 			{% if messages %}
 			{% for category, message in messages %}
@@ -79,13 +76,17 @@
 		</div>
 		<div class="col-sm-2">
 			<div class="content-section" style="font-size: 14px; font-style: italic;">
-				<h3>~ the Third Eye~</h3>
+				<a href="{{url_for('posts.new_post') }} ">
+					<h3>@D bloggers Pub~</h3>
+				</a>
 				<p class="text-muted">
 					<ul style="">
-						<li>Review ongoing pitching live feed</li>
-						<li>Next Pitch Loading...</li>
-						<li>Calendar</li>
-						<li>Events</li>
+						<a href="{{url_for('posts.new_post') }} ">
+							<h5>Own a blog, listen</h5>
+						</a>
+						<a href="{{url_for('posts.new_post') }} ">
+							Click to get going
+						</a>
 					</ul>
 				</p>
 			</div>

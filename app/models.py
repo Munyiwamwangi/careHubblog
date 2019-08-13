@@ -54,8 +54,8 @@ class Post(db.Model, UserMixin):
 	title = db.Column(db.String(150), nullable = False)
 	date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 	content = db.Column(db.String(1000), nullable = False )
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-	reviews = db.relationship('Review', backref = 'review_posts', lazy = True)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	reviews = db.relationship('Review', backref = 'review_posts', lazy = 'dynamic')
 
 	def __repr__(self):
 		return f"Post('{self.title}', '{self.date_posted}')"
@@ -68,9 +68,12 @@ class Review(db.Model, UserMixin):
 	name = db.Column(db.String(150), nullable = False)
 	date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 	content = db.Column(db.String(1000), nullable = False )
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-	post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable = False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+
+	def save_review(self):
+		db.session.add(self)
+		db.session.commit()
 
 	def __repr__(self):
 		return f"Review('{self.name}', '{self.date_posted}')"
-
