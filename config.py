@@ -20,7 +20,7 @@ class ProdConfig(Config):
 	'''
 	pekejeng
 	'''
-	SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URI")
+	SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL")
 
 
 
