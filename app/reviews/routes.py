@@ -14,20 +14,21 @@ reviews = Blueprint('reviews',__name__)
 def new_review(id):
 	form = ReviewForm()
 	if form.validate_on_submit():
-		post_id = id
+		review_id=id		
 		user = User.query.filter_by(id = id).first_or_404()
-		posts = Post.query.filter_by(author = user)\
+		posts = Post.query.filter_by(user = user)\
 		.order_by(Post.date_posted.desc())
-		reviews = Review(name = form.name.data, content = form.content.data, commentor = current_user, post_id=post_id)
+		reviews = Review(name = form.name.data, content = form.content.data, user = current_user)
 		db.session.add(reviews)
 		db.session.commit()
 		flash('you have commented succesfully', 'success')
-		return redirect(url_for('users.post', username=username))
+		return redirect(url_for('main.home'))
 	return render_template('create_review.html', title = 'New Review', form = form, id=id,legend = 'New Review')
 
-@reviews.route("/review/<int:review_id>")
+
+@reviews.route("/review/<int:post_id>")
 def review(post_id):
-	review = Review.query.get_or_404(review_id)
+	review = Review.query.get_or_404(post_id)
 	return render_template('review.html', title = review.name, review = review)
 
 #UPDATE REVIEW
@@ -35,7 +36,7 @@ def review(post_id):
 @login_required
 def update_review(review_id):
 	review = Review.query.get_or_404(post_id)
-	if review.author != current_user:
+	if review.user != current_user:
 		abort(403)
 	form = ReviewForm()
 	if form.validate_on_submit():
@@ -56,7 +57,7 @@ def update_review(review_id):
 @login_required
 def delete_review(post_id):
 	review = Review.query.get_or_404(post_id)
-	if review.author != current_user:
+	if review.user != current_user:
 		abort(403)
 	db.session.delete(review)
 	db.session.commit()

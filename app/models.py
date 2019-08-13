@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 	image_file = db.Column(db.String(20),  nullable = False, default = 'default.jpg')
 	password = db.Column(db.String(60), nullable = False)
 	# bio = db.Column(db.String(1000))
-	posts = db.relationship('Post', backref = 'user', lazy = True)
+	post = db.relationship('Post', backref = 'user', lazy = True)
 	reviews = db.relationship('Review', backref = 'user', lazy = True)
 
 #email config .. passing a token that expires in 1800 seconds; to reset password
@@ -55,7 +55,7 @@ class Post(db.Model, UserMixin):
 	date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 	content = db.Column(db.String(1000), nullable = False )
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-	reviews = db.relationship('Review', backref = 'Post', lazy = 'dynamic')
+	reviews = db.relationship('Review', backref = 'post', lazy = 'dynamic')
 
 	def __repr__(self):
 		return f"Post('{self.title}', '{self.date_posted}')"
