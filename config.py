@@ -3,7 +3,7 @@ import os #FOR SETTING EVIRONMENT VARIABLES
 class Config:
 	SECRET_KEY='de74e7b0fad76d362bfd1fcd0c0fd885'
 	#init db
-	SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringaschool:joe@localhost/blog'
+	# SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringaschool:joe@localhost/blog'
 	UPLOADED_PHOTOS_DEST = 'app/static/profile_pics'
 	MAIL_SERVER = 'smtp.gmail.com'
 	MAIL_PORT =  587
@@ -20,7 +20,7 @@ class ProdConfig(Config):
 	'''
 	pekejeng
 	'''
-	SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL")
+	# SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL")
 
 
 
