@@ -15,14 +15,14 @@ def new_review(id):
 	form = ReviewForm()
 	if form.validate_on_submit():
 		post_id = id
-		user = User.query.filter_by(username = username).first_or_404()
+		user = User.query.filter_by(id = id).first_or_404()
 		posts = Post.query.filter_by(author = user)\
 		.order_by(Post.date_posted.desc())
 		reviews = Review(name = form.name.data, content = form.content.data, commentor = current_user, post_id=post_id)
 		db.session.add(reviews)
 		db.session.commit()
 		flash('you have commented succesfully', 'success')
-		return redirect(url_for('users.user_posts', username=username))
+		return redirect(url_for('users.post', username=username))
 	return render_template('create_review.html', title = 'New Review', form = form, id=id,legend = 'New Review')
 
 @reviews.route("/review/<int:review_id>")
@@ -47,7 +47,7 @@ def update_review(review_id):
 	elif request.method == 'GET':
 		form.name.data = review.name
 		form.content.data = review.content
-	return render_template('create_post.html', title = 'Update Review', 
+	return render_template('create_post.html', title = 'Update Review',
 		form = form, legend = 'Update Review')
 
 

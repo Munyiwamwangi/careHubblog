@@ -17,14 +17,14 @@ class Config:
 		pass
 
 class ProdConfig(Config):
-	SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringaschool:joe@localhost/blog'
-	
+	SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL")
+
 	DEBUG=True
 
-	
+
 class TestConfig(Config):
 	pass
-				
+
 
 class DevConfig(Config):
 	SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringaschool:joe@localhost/blog'
