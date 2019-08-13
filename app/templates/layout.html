@@ -52,17 +52,20 @@
 	</header>
 <main role="main">
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 			<div class="content-section" style="font-size: 14px; font-style: italic;">
-				<a href="{{url_for('main.home')}} ">
+				<a href="{{url_for('main.quotes')}} ">
 					<h3>Quote ~YouR~ DaY</h3>
 				</a>
 				<p class="text-muted">
+					May be it's time we realized that, probably, <br>
+					just by some cool chance,.. thorns have roses, <br> and not as per the normal convention,</b>
+					 click the link above for more inspiration,<br> and see liberal challenges posed to the "norms".
 				
 				</p>
 			</div>
 		</div>
-		<div class="col-sm-6" style="font-size: 14px; font-style: italic;">
+		<div class="col-sm-7" style="font-size: 14px; font-style: italic;">
 			{% with messages = get_flashed_messages(with_categories=true) %} 
 			{% if messages %}
 			{% for category, message in messages %}
