@@ -17,9 +17,11 @@ class Config:
 		pass
 
 class ProdConfig(Config):
+	'''
+	pekejeng
+	'''
 	SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URI")
 
-	DEBUG=True
 
 
 class TestConfig(Config):
