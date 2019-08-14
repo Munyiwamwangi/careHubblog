@@ -100,13 +100,13 @@ def user_posts(username):
 	#PAGINATION
 	page = request.args.get('page', 1, type = int)
 	user = User.query.filter_by(username = username).first_or_404()
-	posts = Post.query.filter_by(author = user)\
+	posts = Post.query.filter_by(user = user)\
 		.order_by(Post.date_posted.desc())\
 		.paginate(page = page, per_page = 5)
 #add REVIEWS TO POSTS PAGE
-	reviews = Review.query.filter_by(commentor = user)\
-		.order_by(Review.date_posted.desc())
-	return render_template('user_posts.html', posts=posts, user = user, reviews = reviews)
+	# reviews = Review.query.filter_by(user = user)\
+	# 	.order_by(Review.date_posted.desc())
+	return render_template('user_posts.html', posts=posts, user = user)
 
 
 #USER REVIEWS
@@ -114,10 +114,9 @@ def user_posts(username):
 def user_reviews(post_id):
 	user = User.query.filter_by(username = username).first_or_404()
 #ADD REVIEWS TO POSTS PAGE
-	reviews = Review.query.filter_by(author = user)\
+	reviews = Review.query.filter_by(user = user)\
 		.order_by(Review.date_posted.desc())
 	return render_template('user_reviews.html',user = user, reviews = reviews)
-
 
 
 

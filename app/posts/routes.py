@@ -48,7 +48,6 @@ def update_post(post_id):
 		form = form, legend = 'Update Post')
 
 
-
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required
 def delete_post(post_id):
