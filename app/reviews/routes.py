@@ -22,7 +22,7 @@ def new_review(id):
 		db.session.add(reviews)
 		db.session.commit()
 		flash('you have commented succesfully', 'success')
-		return redirect(url_for('main.home'))
+		return render_template('review.html', reviews = reviews, post_id=id)
 	return render_template('create_review.html', title = 'New Review', form = form, id=id,legend = 'New Review')
 
 
@@ -35,7 +35,7 @@ def review(post_id):
 @reviews.route("/review/<int:review_id>/update", methods=['GET','POST'])
 @login_required
 def update_review(review_id):
-	review = Review.query.get_or_404(post_id)
+	review = Review.query.get_or_404(review_id)
 	if review.user != current_user:
 		abort(403)
 	form = ReviewForm()
@@ -44,11 +44,11 @@ def update_review(review_id):
 		review.content= form.content.data
 		db.session.commit()
 		flash('Review update successfull', 'success')
-		return redirect(url_for('posts.review', review_id = review.id))
+		return redirect(url_for('reviews.review', review_id = id))
 	elif request.method == 'GET':
 		form.name.data = review.name
 		form.content.data = review.content
-	return render_template('create_post.html', title = 'Update Review',
+	return render_template('create_review.html', title = 'Update Review',
 		form = form, legend = 'Update Review')
 
 
