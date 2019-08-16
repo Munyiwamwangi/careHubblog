@@ -8,8 +8,8 @@
 		</div>
 		{% if reviews.user == current_user %}
 		<div>
-			<a class="btn, btn-warning btn-sm m-1" href="{{url_for('reviews.update_review', review_id = reviews.id)}} " >Update</a>
-			<button type="button" class="btn btn-danger btn-sm mt-1 mb-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+			<!-- <a class="btn, btn-warning btn-sm m-1" href="{{url_for('reviews.update_review', review_id = reviews.id)}} " >Update</a>
+			<button type="button" class="btn btn-danger btn-sm mt-1 mb-1" data-toggle="modal" data-target="#deleteModal">Delete</button> -->
 		</div>
 		{% endif %}
 		<h3 class="article-title text-center">{{reviews.name}} </a></h3>

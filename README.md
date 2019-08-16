@@ -1,6 +1,9 @@
-# @Saferspace
+# 
 
-Author : Munyi Mwangi Wanjiku
+Authors : Munyi Mwangi
+          Vincent Ouma
+          Jannifer Maina
+          Joflix Ooko
 
 ## Live app launch
 

@@ -11,8 +11,6 @@ def load_user(user_id):
 
 #USER OBJECT
 class User(db.Model, UserMixin):
-	__tablename__ = 'user'
-
 	id = db.Column(db.Integer, primary_key = True)
 	username = db.Column(db.String(20), unique=True, nullable = False)
 	email = db.Column(db.String(200), unique=True, nullable = False)
@@ -48,8 +46,6 @@ class User(db.Model, UserMixin):
 
 #USER POSTER
 class Post(db.Model, UserMixin):
-	__tablename__ = 'post'
-
 	id = db.Column(db.Integer, primary_key = True)
 	title = db.Column(db.String(150), nullable = False)
 	date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
@@ -62,8 +58,6 @@ class Post(db.Model, UserMixin):
 
 #COMMENTS OBJECT
 class Review(db.Model, UserMixin):
-	__tablename__ = 'reviews'
-
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(150), nullable = False)
 	date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
@@ -74,6 +68,12 @@ class Review(db.Model, UserMixin):
 	def save_review(self):
 		db.session.add(self)
 		db.session.commit()
+
+	def my_function():
+		with app.app_context():
+			user = db.User(...)
+			db.session.add(user)
+			db.session.commit()
 
 	def __repr__(self):
 		return f"Review('{self.name}', '{self.date_posted}')"
