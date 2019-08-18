@@ -9,14 +9,14 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css') }} ">
 
 	{% if title %}
-		<title>@Saferspace{{title}} </title>
+		<title>@Care Hub{{title}} </title>
 	{% else %}
-		<title>@Saferspace</title>
+		<title>@Care Hub</title>
 	{% endif %}
 </head>
 <body class="container-fluid">
 	<div style="padding-left: 8%; color: rgb(8, 117, 108;" class="">
-		<h2 class="text-center">You're @Saferspace<br><span style="font-size: 12px; font-style: italic;">Grow and glow: thorns have roses;
+		<h2 class="text-center">You're @Care Hub<br><span style="font-size: 12px; font-style: italic;">Grow and glow: thorns have roses;
 		</span>
 	</h2>
 	</div>
@@ -34,7 +34,7 @@
 					</div>
 					<div style="box-sizing: border-box; display: inline-flex;">
 						{% if current_user.is_authenticated %}
-						<a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
+						<a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">Post Story</a>
 						<a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
 						<a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
 						{% else %}
@@ -61,12 +61,12 @@
 					May be it's time we realized that, probably, <br>
 					just by some cool chance,.. thorns have roses, <br> and not as per the normal convention,</b>
 					 click the link above for more inspiration,<br> and see liberal challenges posed to the "norms".
-				
+
 				</p>
 			</div>
 		</div>
 		<div class="col-sm-7" style="font-size: 14px; font-style: italic;">
-			{% with messages = get_flashed_messages(with_categories=true) %} 
+			{% with messages = get_flashed_messages(with_categories=true) %}
 			{% if messages %}
 			{% for category, message in messages %}
 			<div class="alert alert-{{ category }}">
@@ -75,18 +75,15 @@
 			{% endfor %}
 			{% endif %}
 			{% endwith %}
-			
+
 			{% block content %} {% endblock %}
 		</div>
 		<div class="col-sm-2">
 			<div class="content-section" style="font-size: 14px; font-style: italic;">
-				<a href="{{url_for('posts.new_post') }} ">
-					<h3>@D bloggers Pub~</h3>
-				</a>
 				<p class="text-muted">
 					<ul style="">
 						<a href="{{url_for('posts.new_post') }} ">
-							<h5>Own a blog, listen</h5>
+							<h5>Own a blog, Inspire;</h5>
 						</a>
 						<a href="{{url_for('posts.new_post') }} ">
 							Click to get going
@@ -97,7 +94,7 @@
 		</div>
 	</div>
 	<footer style="font-size: 10px; outline-color: azure;" class="text-muted">
-		<p class="text-center">Copyright (c) 2019 Munyiwamwangi</p>
+		<p class="text-center">Copyright (c) 2019 CareHub</p>
 	</footer>
 </main>
 	<!-- Optional JavaScript -->

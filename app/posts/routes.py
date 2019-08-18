@@ -17,9 +17,9 @@ def new_post():
 		post = Post(title = form.title.data, content = form.content.data, user = current_user)
 		db.session.add(post)
 		db.session.commit()
-		flash('Your post has been created', 'success')
+		flash('Your story has been posted, thank you', 'success')
 		return redirect(url_for('main.home'))
-	return render_template('create_post.html', title = 'New Post', form = form, legend = 'New Post')
+	return render_template('create_post.html', title = 'New Post', form = form, legend = 'New Story')
 
 
 @posts.route("/post/<int:post_id>")
@@ -39,12 +39,12 @@ def update_post(post_id):
 		post.title =  form.title.data
 		post.content= form.content.data
 		db.session.commit()
-		flash('Post update successfull', 'success')
+		flash('Story update successfull', 'success')
 		return redirect(url_for('posts.post', post_id = post.id))
 	elif request.method == 'GET':
 		form.title.data = post.title
 		form.content.data = post.content
-	return render_template('create_post.html', title = 'Update Post',
+	return render_template('create_post.html', title = 'Update  Story',
 		form = form, legend = 'Update Post')
 
 
@@ -56,5 +56,5 @@ def delete_post(post_id):
 		abort(403)
 	db.session.delete(post)
 	db.session.commit()
-	flash('Post deleted', 'success')
+	flash('OOps! Story deleted', 'danger')
 	return redirect(url_for('main.home'))

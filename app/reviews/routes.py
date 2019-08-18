@@ -21,9 +21,9 @@ def new_review(id):
 		reviews = Review(name = form.name.data, content = form.content.data, user = current_user)
 		db.session.add(reviews)
 		db.session.commit()
-		flash('you have commented succesfully', 'success')
+		flash('thank you for contributing', 'success')
 		return render_template('review.html', reviews = reviews, post_id=id)
-	return render_template('create_review.html', title = 'New Review', form = form, id=id,legend = 'New Review')
+	return render_template('create_review.html', title = 'New Review', form = form, id=id,legend = 'New Comment')
 
 
 @reviews.route("/review/<int:post_id>")
@@ -61,5 +61,5 @@ def delete_review(post_id):
 		abort(403)
 	db.session.delete(review)
 	db.session.commit()
-	flash('Review deleted', 'success')
+	flash('Contribution deleted', 'success')
 	return redirect(url_for('main.home'))

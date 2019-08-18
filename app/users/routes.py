@@ -43,7 +43,7 @@ def register():
 			'''
 			mail.send(user_welcome)
 
-		flash(f'Account created for {form.username.data}. You can now login', 'success')
+		flash(f' {form.username.data}. Welcome to our community, You can now login', 'success')
 		return redirect(url_for('users.login'))
 	return render_template('register.html', title = 'Register', form = form)
 
@@ -61,7 +61,7 @@ def login():
 			#if there is not a next page, always render home
 			return redirect(next_page) if next_page else redirect(url_for('main.home'))
 		else:
-			flash(f'Login Unsuccesfull. Please check email and password.', 'danger')
+			flash(f'Login Unsuccesfull. Kindly recheck email and password.', 'danger')
 	return render_template('login.html', title = 'Login', form = form)
 
 
@@ -83,7 +83,7 @@ def account():
 		current_user.username = form.username.data
 		current_user.email = form.email.data
 		db.session.commit()
-		flash('Your account has been updated', 'success')
+		flash('Your account has been updated, please login', 'success')
 		return redirect (url_for('users.account'))
 	elif request.method == 'GET':
 		form.username.data = current_user.username
@@ -128,7 +128,7 @@ def reset_request():
 	if form.validate_on_submit():
 		user = User.query.filter_by(email=form.email.data).first()
 		send_reset_email(user)
-		flash('An email has been sent to your email account to help with passeord reset.', 'info')
+		flash('An email has been sent to your email account to help with password reset.', 'info')
 		return redirect(url_for('main.login'))
 	return render_template('reset_request.html', title = 'Request Password', form = form)
 
